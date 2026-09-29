@@ -2,10 +2,10 @@ import { Router, Request, Response } from "express";
 import mongoose from "mongoose";
 import { productModel } from "../models/product";
 
-const router = Router();
+const productRouter = Router();
 
 // GET /api/v1/products?search=watch&category=<categoryId>
-router.get("/", async (req: Request, res: Response) => {
+productRouter.get("/", async (req: Request, res: Response) => {
   try {
     const { search, category } = req.query;
     const filter: Record<string, unknown> = {};
@@ -33,7 +33,7 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
-router.get("/:id", async (req: Request, res: Response) => {
+productRouter.get("/:id", async (req: Request, res: Response) => {
   try {
     const id = req.params.id as string;
     if (!mongoose.isValidObjectId(id)) {
@@ -53,4 +53,4 @@ router.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
-export default router;
+export default productRouter;

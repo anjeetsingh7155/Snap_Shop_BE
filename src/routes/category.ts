@@ -1,9 +1,9 @@
 import { Router, Request, Response } from "express";
 import { categoryModel } from "../models/category";
 
-const router = Router();
+const categoryRouter = Router();
 
-router.get("/", async (req: Request, res: Response) => {
+categoryRouter.get("/", async (req: Request, res: Response) => {
   try {
     const categories = await categoryModel.find().sort({ title: 1 });
     return res.status(200).json({ categories });
@@ -12,4 +12,4 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
-export default router;
+export default categoryRouter;

@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { userModel } from "../models/user";
 import { AuthMiddleware } from "../middleware/auth";
 
-const router = Router();
+const authRouter = Router();
 
 const registerSchema = z.object({
   name: z.string().min(3).max(30),
@@ -31,7 +31,7 @@ const validationError = (res: Response, error: z.ZodError) => {
   });
 };
 
-router.post("/register", async (req: Request, res: Response) => {
+authRouter.post("/register", async (req: Request, res: Response) => {
   try {
     const safeObject = registerSchema.safeParse(req.body);
     if (!safeObject.success) {
@@ -55,7 +55,7 @@ router.post("/register", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/login", async (req: Request, res: Response) => {
+authRouter.post("/login", async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
@@ -98,7 +98,7 @@ router.post("/login", async (req: Request, res: Response) => {
   }
 });
 
-router.get("/profile", AuthMiddleware, async (req: Request, res: Response) => {
+authRouter.get("/profile", AuthMiddleware, async (req: Request, res: Response) => {
   try {
     const user = await userModel.findById(req.userID).select("-password");
     if (!user) {
@@ -110,7 +110,7 @@ router.get("/profile", AuthMiddleware, async (req: Request, res: Response) => {
   }
 });
 
-router.put("/profile", AuthMiddleware, async (req: Request, res: Response) => {
+authRouter.put("/profile", AuthMiddleware, async (req: Request, res: Response) => {
   try {
     const safeObject = profileSchema.safeParse(req.body);
     if (!safeObject.success) {
@@ -130,4 +130,4 @@ router.put("/profile", AuthMiddleware, async (req: Request, res: Response) => {
   }
 });
 
-export default router;
+export default authRouter;
