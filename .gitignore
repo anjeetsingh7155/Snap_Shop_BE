@@ -2,3 +2,4 @@ node_modules
 JsFiles
 dist
 .env
+package-lock.json

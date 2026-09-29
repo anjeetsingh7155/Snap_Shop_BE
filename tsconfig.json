@@ -5,7 +5,7 @@
     "moduleResolution": "node16",
 
     "rootDir": "./src",
-    "outDir": "./JsFiles",
+    "outDir": "./dist",
 
     "strict": true,
     "esModuleInterop": true,
@@ -16,5 +16,5 @@
     "resolveJsonModule": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "JsFiles"]
+  "exclude": ["node_modules", "dist"]
 }
