@@ -6,6 +6,7 @@ import authRouter from "./routes/auth";
 import categoryRouter from "./routes/category";
 import productRouter from "./routes/product";
 import cartRouter from "./routes/cart";
+import orderRouter from "./routes/order";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/cart", cartRouter);
+app.use("/api/v1/orders", orderRouter);
 
 connectDB()
   .then(() => {
