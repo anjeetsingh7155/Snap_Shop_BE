@@ -1,1 +1,1 @@
-{"root":["./src/index.ts"],"version":"5.9.3"}
+{"root":["./src/index.ts","./src/config/db.ts","./src/middleware/auth.ts","./src/models/cart.ts","./src/models/category.ts","./src/models/order.ts","./src/models/product.ts","./src/models/user.ts","./src/routes/auth.ts","./src/routes/category.ts","./src/routes/product.ts","./src/seed/seed.ts","./src/types/index.ts"],"version":"5.9.3"}

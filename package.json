@@ -2,7 +2,7 @@
   "name": "snapshop_be",
   "version": "1.0.0",
   "description": "",
-  "main": "./JsFiles/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "tsc -b",
     "start": "nodemon ./dist/index.js",
