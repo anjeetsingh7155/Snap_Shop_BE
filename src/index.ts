@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (_req: Request, res: Response) => {
-  res.json({ message: "SnapShop Backend Running 🚀" });
+  res.json({ message: "SnapShop Backend Running" });
 });
 
 app.use("/api/v1/auth", authRouter);
