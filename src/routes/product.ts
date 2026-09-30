@@ -4,7 +4,6 @@ import { productModel } from "../models/product";
 
 const productRouter = Router();
 
-// GET /api/v1/products?search=watch&category=<categoryId>
 productRouter.get("/", async (req: Request, res: Response) => {
   try {
     const { search, category } = req.query;

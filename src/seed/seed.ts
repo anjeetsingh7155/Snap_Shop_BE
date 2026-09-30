@@ -26,7 +26,6 @@ const products = [
 const seed = async () => {
   await connectDB();
 
-  // clears old sample data, then adds fresh data
   await productModel.deleteMany({});
   await categoryModel.deleteMany({});
 

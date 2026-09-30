@@ -22,7 +22,6 @@ const updateSchema = z.object({
   quantity: z.number().int().min(1).max(20),
 });
 
-// builds the cart the app shows: product details, subtotal and total price
 const buildCartResponse = async (userId: string) => {
   const cart = await cartModel.findOne({ userId });
   if (!cart || cart.items.length === 0) {
@@ -35,7 +34,7 @@ const buildCartResponse = async (userId: string) => {
 
   const items = cart.items.flatMap((i) => {
     const p = productMap.get(i.productId.toString());
-    if (!p) return []; // product was deleted, skip it
+    if (!p) return [];
     return [
       {
         productId: p._id,
@@ -105,7 +104,6 @@ router.post("/add", AuthMiddleware, async (req: Request, res: Response) => {
   }
 });
 
-// sets the quantity to the number sent (used by the + and - buttons)
 router.put("/update", AuthMiddleware, async (req: Request, res: Response) => {
   try {
     const safeObject = updateSchema.safeParse(req.body);

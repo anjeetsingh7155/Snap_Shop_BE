@@ -11,7 +11,6 @@ export const AuthMiddleware = (req: Request, res: Response, next: NextFunction) 
       res.status(403).json({ message: "Invalid or expired token" });
       return;
     }
-    // works with both "Bearer <token>" and the raw token
     const token = header.startsWith("Bearer ") ? header.slice(7) : header;
     const decoded = jwt.verify(token, SESSION_SECRET) as jwt.JwtPayload;
     req.userID = decoded.id as string;

@@ -16,7 +16,6 @@ const checkoutSchema = z.object({
 
 type StockChange = { productId: Types.ObjectId; quantity: number };
 
-// puts back the stock if the order could not be completed
 const restoreStock = async (changes: StockChange[]) => {
   for (const c of changes) {
     await productModel.updateOne({ _id: c.productId }, { $inc: { stock: c.quantity } });
@@ -24,7 +23,6 @@ const restoreStock = async (changes: StockChange[]) => {
   changes.length = 0;
 };
 
-// checkout: place an order from the cart (Cash on Delivery only)
 router.post("/", AuthMiddleware, async (req: Request, res: Response) => {
   const reduced: StockChange[] = [];
   let orderCreated = false;
@@ -64,7 +62,6 @@ router.post("/", AuthMiddleware, async (req: Request, res: Response) => {
       });
     }
 
-    // reduce stock only if enough is left; undo everything if any item fails
     for (const item of orderItems) {
       const result = await productModel.updateOne(
         { _id: item.productId, stock: { $gte: item.quantity } },
@@ -100,7 +97,6 @@ router.post("/", AuthMiddleware, async (req: Request, res: Response) => {
   }
 });
 
-// my orders, newest first
 router.get("/", AuthMiddleware, async (req: Request, res: Response) => {
   try {
     const orders = await orderModel
@@ -112,7 +108,6 @@ router.get("/", AuthMiddleware, async (req: Request, res: Response) => {
   }
 });
 
-// order details (includes the order status)
 router.get("/:id", AuthMiddleware, async (req: Request, res: Response) => {
   try {
     const id = req.params.id as string;

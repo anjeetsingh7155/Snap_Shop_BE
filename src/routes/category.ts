@@ -3,7 +3,7 @@ import { categoryModel } from "../models/category";
 
 const categoryRouter = Router();
 
-categoryRouter.get("/", async (req: Request, res: Response) => {
+categoryRouter.get("/", async (_req: Request, res: Response) => {
   try {
     const categories = await categoryModel.find().sort({ title: 1 });
     return res.status(200).json({ categories });
